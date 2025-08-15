@@ -1,0 +1,32 @@
+services:
+  app:
+    build:
+      context: .
+      target: prod
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env.production
+    environment:
+      - NODE_ENV=production
+    networks:
+      - FRA
+
+  db:
+    ports:
+      - '5432:5432'
+    env_file:
+      - .env.prod
+    networks:
+      - FRA
+
+  redis:
+    ports:
+      - '6379:6379'
+    env_file:
+      - .env.prod
+    volumes:
+      - ./redis-entrypoint.sh:/usr/local/bin/redis-entrypoint.sh
+    entrypoint: ['sh', '/usr/local/bin/redis-entrypoint.sh']
+    networks:
+      - FRA
