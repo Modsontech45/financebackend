@@ -197,7 +197,7 @@ async function startServer() {
             }
         }, 60000); // Run every minute
 
-        app.listen(+PORT, '0.0.0.0', () => {
+        app.listen(+PORT, () => {
             console.log(`🚀 Server running on port ${PORT}`);
             console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
             console.log(`📚 API Documentation: http://localhost:${PORT}/api`);
